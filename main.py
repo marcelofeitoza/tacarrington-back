@@ -6,26 +6,31 @@ import pickle, pandas, numpy
 app = Flask(__name__)
 
 
+
+def separateTrainValues(df):
+    x = df.drop('Magnetic field magnitude', axis=1)
+    y = df['Magnetic field magnitude']
+
+    return X, y
+
+
+
 def runModel():
-    data = pandas.read_csv('data.csv')
+    df = pandas.read_csv('data.csv')
+    
+    X, y = separateTrainValues(df)
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-    x_entrada = df2[['Bx','By','Bz', 'Storm range', 'Epoch',
-                    'S/C operational mode', 'WIND/MFI operational mode']].values
+    from sklearn.linear_model import LinearRegression
+    regressor = LinearRegression()
+    regressor.fit(X_train, y_train)
 
-    y_saida = df2['Magnetic field magnitude'].values
-    X_train, X_test, Y_train, Y_test = train_test_split(x_entrada, y_saida, 
-                                                        test_size = 0.3, 
-                                                        random_state = 42)
+    with open('model.pkl', 'wb') as f:
+        pickle.dump(regressor, f)
 
-    # Load the model
-    model = pickle.load(open('model.pkl', 'rb'))
+    return regressor                                                       
 
-    # Make prediction using model loaded from disk as per the data.
-    prediction = model.predict(X_train)
-
-    # Take the first value of prediction
-    output = prediction[0]
-    return jsonify(output)
 
 
 @app.route('/')
