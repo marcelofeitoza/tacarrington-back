@@ -1,0 +1,175 @@
+$medium: 800px;
+
+@keyframes smthAppear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes smthAppearTop {
+  from {
+    opacity: 0;
+    top: 50%;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+.main {
+  height: 100vh;
+  animation: smthAppear 2s;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 20px;
+
+  >div {
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 15px;
+
+    header {
+      display: flex;
+      align-items: center;
+
+      h1 {
+        margin-left: 15px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+  footer {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 26px;
+
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  >div:nth-child(2) {
+    >header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+
+      button {
+        background: #ffffff;
+        border-radius: 10px;
+        height: 40px;
+        width: 40px;
+
+        transition: 200ms;
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+}
+
+.data {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  >span {
+    display: flex;
+    align-self: flex-start;
+    color: #00ff47;
+  }
+
+  h2 {
+    font-size: 40px;
+    margin: 0px 10px;
+  }
+
+  h5 {
+    margin-right: 20px;
+  }
+
+  >div {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.cards {
+  height: 150px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 15px;
+  column-gap: 15px;
+
+  div {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: rgba(33, 33, 33, 1);
+    border-radius: 10px;
+  }
+  
+  h1 > span {
+    font-size: 18px;
+  }
+}
+
+.events {
+  background-color: rgba(33, 33, 33, 0.6);
+  // height: 100%;
+  border-radius: 15px;
+  padding: 20px;
+
+  header {
+    margin-bottom: 15px;
+
+    h2 {
+      margin-left: 5px;
+    }
+  }
+
+  >div div {
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+
+    >div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@media only screen and (max-width: $medium) {
+  .main {
+    >header {
+      justify-content: center;
+    }
+
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .cards {
+    height: 200px;
+  }
+}
